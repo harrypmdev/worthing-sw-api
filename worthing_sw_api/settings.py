@@ -43,9 +43,9 @@ REST_FRAMEWORK = {
 }
 
 if 'DEV' not in os.environ:
-    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = {
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
         'rest_framework.renderers.JSONRenderer'
-    }
+    ]
 
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
@@ -54,7 +54,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZER = {
-    'USER_DETAIL_SERIALIZER': 'worthing_sw_api.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'worthing_sw_api.serializers.CurrentUserSerializer'
 }
 
 # Quick-start development settings - unsuitable for production
