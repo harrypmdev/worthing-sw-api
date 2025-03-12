@@ -91,7 +91,6 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'profiles',
-    'users',
 ]
 
 SITE_ID = 1
@@ -170,10 +169,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-# Overwrite user model to make email field required
-AUTH_USER_MODEL = 'users.User'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
