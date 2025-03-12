@@ -113,7 +113,7 @@ CORS_ALLOWED_ORIGINS = [
     ] if origin
 ]
 
-CORS_ALLOWED_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'worthing_sw_api.urls'
 
