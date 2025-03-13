@@ -53,7 +53,7 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
-REST_AUTH_SERIALIZER = {
+REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'worthing_sw_api.serializers.CurrentUserSerializer'
 }
 
