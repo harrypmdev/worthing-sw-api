@@ -3,6 +3,9 @@ from rest_framework import serializers
 
 
 class CurrentUserSerializer(UserDetailsSerializer):
+    """Amend UserDetailsSerializer to add profile id and profile image.
+    Set as user serializer in settings.py.
+    """
     profile_id = serializers.ReadOnlyField(source='profile.id')
     profile_image = serializers.ReadOnlyField(source='profile.image.url')
 
