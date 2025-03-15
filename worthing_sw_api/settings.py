@@ -92,6 +92,8 @@ INSTALLED_APPS = [
 
     'profiles',
     'base_content',
+    'songs',
+    'posts',
 ]
 
 SITE_ID = 1
