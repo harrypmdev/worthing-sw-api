@@ -98,6 +98,8 @@ INSTALLED_APPS = [
     'base_content',
     'songs',
     'posts',
+    'comments',
+    'votes'
 ]
 
 SITE_ID = 1
