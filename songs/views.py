@@ -1,6 +1,7 @@
-from rest_framework import generics, permissions
-from worthing_sw_api.permissions import IsUserOrReadOnly
+from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
+from worthing_sw_api.permissions import IsUserOrReadOnly
 from .models import Song
 from .serializers import SongSerializer
 
@@ -9,6 +10,18 @@ class SongList(generics.ListCreateAPIView):
     serializer_class = SongSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Song.objects.order_by('-created_at')
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend
+    ]
+    search_fields = [
+        'user__username',
+        'title'
+    ]
+    filterset_fields = [
+        'user__profile'
+    ]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
