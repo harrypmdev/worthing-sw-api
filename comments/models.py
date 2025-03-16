@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     base_content = GenericForeignKey('content_type', 'object_id')
