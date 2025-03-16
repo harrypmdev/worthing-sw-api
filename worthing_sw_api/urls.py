@@ -30,4 +30,5 @@ urlpatterns = [
     path('', include('songs.urls')),
     path('', include('comments.urls')),
     path('', include('votes.urls')),
+    path('', include('followers.urls')),
 ]

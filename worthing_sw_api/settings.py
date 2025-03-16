@@ -100,7 +100,8 @@ INSTALLED_APPS = [
     'songs',
     'posts',
     'comments',
-    'votes'
+    'votes',
+    'followers',
 ]
 
 SITE_ID = 1

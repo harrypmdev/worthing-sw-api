@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
-
 from worthing_sw_api.permissions import IsUserOrReadOnly
+
 from .models import Song
 from .serializers import SongSerializer
 
