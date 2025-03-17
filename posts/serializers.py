@@ -5,6 +5,7 @@ from .models import Post
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
+    user_image = serializers.ReadOnlyField(source='user.profile.image.url')
     is_user = serializers.SerializerMethodField()
 
     def get_is_user(self, obj):
@@ -14,6 +15,6 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'user', 'is_user', 'title', 'updated_at',
+            'id', 'user', 'user_image', 'is_user', 'title', 'updated_at',
             'created_at', 'content', 'song', 'net_votes'
         ]
