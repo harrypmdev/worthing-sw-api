@@ -2,22 +2,22 @@ from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 
 from worthing_sw_api.permissions import IsUserOrReadOnly
-from .models import Vote
-from .serializers import VoteSerializer
+from .models import PostVote
+from .serializers import PostVoteSerializer
 
 
-class VoteList(generics.ListCreateAPIView):
-    serializer_class = VoteSerializer
+class PostVoteList(generics.ListCreateAPIView):
+    serializer_class = PostVoteSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Vote.objects.order_by('-created_at')
+    queryset = PostVote.objects.order_by('-created_at')
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['content_type', 'object_id']
+    filterset_fields = ['user']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 
-class VoteDetail(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = VoteSerializer
+class PostVoteDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PostVoteSerializer
     permission_classes = [IsUserOrReadOnly]
-    queryset = Vote.objects.order_by('-created_at')
+    queryset = PostVote.objects.order_by('-created_at')

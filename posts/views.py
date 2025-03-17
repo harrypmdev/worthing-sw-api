@@ -20,8 +20,9 @@ class PostList(generics.ListCreateAPIView):
         'title'
     ]
     filterset_fields = [
-        'user__followed__user__profile',
-        'user__profile'
+        # 'user__followed__user__profile',
+        # 'user__profile'
+        'net_votes'
     ]
 
     def perform_create(self, serializer):
