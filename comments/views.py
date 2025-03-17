@@ -11,7 +11,7 @@ class CommentList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.order_by('-created_at')
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['content_type', 'object_id']
+    filterset_fields = ['user', 'post']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
