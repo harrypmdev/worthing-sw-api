@@ -20,11 +20,23 @@ class SongList(generics.ListCreateAPIView):
         'title'
     ]
     filterset_fields = [
-        'user__profile'
+        'user',
+        'user__profile',
+        'net_votes'
+    ]
+    ordering_fields = [
+        'net_votes'
     ]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        limit = self.request.query_params.get('limit')
+        if limit is not None:
+            queryset = queryset[:int(limit)]
+        return queryset
 
 
 class SongDetail(generics.RetrieveUpdateDestroyAPIView):

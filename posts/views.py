@@ -20,8 +20,13 @@ class PostList(generics.ListCreateAPIView):
         'title'
     ]
     filterset_fields = [
-        # 'user__followed__user__profile',
-        # 'user__profile'
+        'user',
+        'user__profile',
+        'user__followed__user',
+        'user__followed__user__profile',
+        'net_votes'
+    ]
+    ordering_fields = [
         'net_votes'
     ]
 
