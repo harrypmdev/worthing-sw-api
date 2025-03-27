@@ -29,6 +29,7 @@ class SongList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
+        print(self.request.FILES)  # Log incoming files
         serializer.save(user=self.request.user)
 
     def get_queryset(self):

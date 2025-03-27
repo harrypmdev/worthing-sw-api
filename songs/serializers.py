@@ -16,5 +16,5 @@ class SongSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'user', 'is_user', 'title', 'updated_at',
             'created_at', 'audio_url', 'net_votes', 'artist_name',
-            'link_to_song'
+            'link_to_song', 'audio_file'
         ]
