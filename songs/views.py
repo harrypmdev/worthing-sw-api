@@ -1,7 +1,8 @@
+from django.core.exceptions import ValidationError
 from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
-from worthing_sw_api.permissions import IsUserOrReadOnly
 
+from worthing_sw_api.permissions import IsUserOrReadOnly
 from .models import Song
 from .serializers import SongSerializer
 
@@ -29,7 +30,10 @@ class SongList(generics.ListCreateAPIView):
     ]
 
     def perform_create(self, serializer):
-        print(self.request.FILES)  # Log incoming files
+        user = self.request.user
+        song_count = Song.objects.filter(user=user).count()
+        if song_count >= 3:
+            raise ValidationError('You cannot add more than 3 songs')
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
