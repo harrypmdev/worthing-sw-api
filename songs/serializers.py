@@ -9,6 +9,7 @@ class SongSerializer(serializers.ModelSerializer):
     is_user = serializers.SerializerMethodField()
     user_upvoted = serializers.SerializerMethodField()
     user_downvoted = serializers.SerializerMethodField()
+    user_vote_id = serializers.SerializerMethodField()
 
     def get_is_user(self, obj):
         request = self.context['request']
@@ -26,10 +27,18 @@ class SongSerializer(serializers.ModelSerializer):
             return SongVote.objects.filter(song=obj, user=user, downvote=True).exists()
         return False
 
+    def get_user_vote_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            vote = SongVote.objects.filter(song=obj, user=user).first()
+            return vote.id if vote else None
+        return None
+
     class Meta:
         model = Song
         fields = [
             'id', 'user', 'is_user', 'title', 'updated_at',
             'created_at', 'audio_url', 'net_votes', 'artist_name',
-            'link_to_song', 'audio_file', 'user_upvoted', 'user_downvoted'
+            'link_to_song', 'audio_file', 'user_upvoted',
+            'user_downvoted', 'user_vote_id'
         ]
