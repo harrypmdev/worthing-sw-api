@@ -1,4 +1,9 @@
+from io import BytesIO
+
+from django.core.files.base import ContentFile
 from rest_framework import serializers
+
+from pydub import AudioSegment
 
 from .models import Song
 from song_votes.models import SongVote
@@ -33,6 +38,28 @@ class SongSerializer(serializers.ModelSerializer):
             vote = SongVote.objects.filter(song=obj, user=user).first()
             return vote.id if vote else None
         return None
+
+    def trim_wav_file(self, file, max_size_mb=8):
+        max_size_bytes = max_size_mb * 1024 * 1024
+        audio = AudioSegment.from_wav(file)
+        bitrate = audio.frame_rate * audio.channels * audio.sample_width * 8
+        max_duration_ms = (max_size_bytes * 8) / bitrate * 1000
+        trimmed_audio = audio[:max_duration_ms]
+        buffer = BytesIO()
+        trimmed_audio.export(buffer, format="wav")
+        buffer.seek(0)
+        trimmed_file = ContentFile(buffer.read(), name=file.name)
+        return trimmed_file
+
+    def validate_audio_file(self, value):
+        if not value:
+            raise serializers.ValidationError("An audio file is required.")
+        if value.size > 10 * 1024 * 1024:  # 10MB limit
+            value = self.trim_wav_file(value)
+            if value.size > 10 * 1024 * 1024:
+                fileError = "The file size exceeds the 10MB limit and could not be shortened."
+                raise serializers.ValidationError(fileError)
+        return value
 
     class Meta:
         model = Song
