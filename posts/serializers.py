@@ -7,6 +7,7 @@ from followers.models import Follower
 
 class PostSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
+    user_id = serializers.ReadOnlyField(source='user.pk')
     profile_id = serializers.ReadOnlyField(source='user.profile.id')
     user_image = serializers.ReadOnlyField(source='user.profile.image.url')
     is_user = serializers.SerializerMethodField()
@@ -50,7 +51,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'user', 'user_image', 'profile_id',
+            'id', 'user', 'user_id', 'user_image', 'profile_id',
             'is_user', 'title', 'updated_at',
             'created_at', 'content', 'song', 'net_votes',
             'user_upvoted', 'user_downvoted', 'user_vote_id',
