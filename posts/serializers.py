@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Post
 from post_votes.models import PostVote
+from followers.models import Follower
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -12,6 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
     user_upvoted = serializers.SerializerMethodField()
     user_downvoted = serializers.SerializerMethodField()
     user_vote_id = serializers.SerializerMethodField()
+    following_id = serializers.SerializerMethodField()
 
     def get_is_user(self, obj):
         request = self.context['request']
@@ -36,11 +38,21 @@ class PostSerializer(serializers.ModelSerializer):
             return vote.id if vote else None
         return None
 
+    def get_following_id(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            following = Follower.objects.filter(
+                user=user, followed=obj.user
+            ).first()
+            return following.id if following else None
+        return None
+
     class Meta:
         model = Post
         fields = [
             'id', 'user', 'user_image', 'profile_id',
             'is_user', 'title', 'updated_at',
             'created_at', 'content', 'song', 'net_votes',
-            'user_upvoted', 'user_downvoted', 'user_vote_id'
+            'user_upvoted', 'user_downvoted', 'user_vote_id',
+            'following_id'
         ]
