@@ -3,7 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from worthing_sw_api.permissions import IsUserOrReadOnly
 from .models import Comment
-from .serializers import CommentSerializer
+from .serializers import CommentSerializer, CommentDetailSerializer
 
 
 class CommentList(generics.ListCreateAPIView):
@@ -18,6 +18,6 @@ class CommentList(generics.ListCreateAPIView):
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = CommentSerializer
+    serializer_class = CommentDetailSerializer
     permission_classes = [IsUserOrReadOnly]
-    queryset = Comment.objects.order_by('-created_at')
+    queryset = Comment.objects.all()
