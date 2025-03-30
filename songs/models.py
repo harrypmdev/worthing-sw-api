@@ -21,7 +21,7 @@ class Song(BaseContent):
                 resource_type='raw',  # Specify raw resource type for non-image files
                 folder='audio_files/'  # Save in a specific folder on Cloudinary
             )
-            self.audio_url = result['url']  # Save the Cloudinary URL
+            self.audio_url = result['secure_url']  # Save the Cloudinary URL
 
             # Clean up the file after upload
             self.audio_file.delete(save=False)
