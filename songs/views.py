@@ -23,6 +23,7 @@ class SongList(generics.ListCreateAPIView):
     filterset_fields = [
         'user',
         'user__profile',
+        'user__followed__user',
         'net_votes'
     ]
     ordering_fields = [
