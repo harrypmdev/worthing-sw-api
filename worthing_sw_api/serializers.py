@@ -6,10 +6,9 @@ class CurrentUserSerializer(UserDetailsSerializer):
     """Amend UserDetailsSerializer to add profile id and profile image.
     Set as user serializer in settings.py.
     """
-    profile_id = serializers.ReadOnlyField(source='profile.id')
-    profile_image = serializers.ReadOnlyField(source='profile.image.url')
+
+    profile_id = serializers.ReadOnlyField(source="profile.id")
+    profile_image = serializers.ReadOnlyField(source="profile.image.url")
 
     class Meta(UserDetailsSerializer.Meta):
-        fields = UserDetailsSerializer.Meta.fields + (
-            'profile_id', 'profile_image'
-        )
+        fields = UserDetailsSerializer.Meta.fields + ("profile_id", "profile_image")

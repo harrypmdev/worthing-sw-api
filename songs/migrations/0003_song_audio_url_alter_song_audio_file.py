@@ -4,20 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('songs', '0002_song_link_to_song'),
+        ("songs", "0002_song_link_to_song"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='song',
-            name='audio_url',
+            model_name="song",
+            name="audio_url",
             field=models.URLField(blank=True, max_length=500),
         ),
         migrations.AlterField(
-            model_name='song',
-            name='audio_file',
-            field=models.FileField(blank=True, null=True, upload_to='temp_audio/'),
+            model_name="song",
+            name="audio_file",
+            field=models.FileField(blank=True, null=True, upload_to="temp_audio/"),
         ),
     ]

@@ -9,26 +9,21 @@ from .serializers import PostSerializer
 class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.order_by('-created_at')
+    queryset = Post.objects.order_by("-created_at")
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
-        DjangoFilterBackend
+        DjangoFilterBackend,
     ]
-    search_fields = [
-        'user__username',
-        'title'
-    ]
+    search_fields = ["user__username", "title"]
     filterset_fields = [
-        'user',
-        'user__profile',
-        'user__followed__user',
-        'user__followed__user__profile',
-        'net_votes'
+        "user",
+        "user__profile",
+        "user__followed__user",
+        "user__followed__user__profile",
+        "net_votes",
     ]
-    ordering_fields = [
-        'net_votes'
-    ]
+    ordering_fields = ["net_votes"]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -37,4 +32,4 @@ class PostList(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsUserOrReadOnly]
-    queryset = Post.objects.order_by('-created_at')
+    queryset = Post.objects.order_by("-created_at")

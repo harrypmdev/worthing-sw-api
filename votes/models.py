@@ -9,11 +9,11 @@ class Vote(models.Model):
 
     class Meta:
         abstract = True
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
         return (
-            f'{self.id}: '
-            + ('downvote' if self.downvote else 'upvote')
+            f"{self.id}: "
+            + ("downvote" if self.downvote else "upvote")
             + f" on {self.user.username}'s post"
         )

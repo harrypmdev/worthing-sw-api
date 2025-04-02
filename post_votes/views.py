@@ -9,9 +9,9 @@ from .serializers import PostVoteSerializer
 class PostVoteList(generics.ListCreateAPIView):
     serializer_class = PostVoteSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = PostVote.objects.order_by('-created_at')
+    queryset = PostVote.objects.order_by("-created_at")
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['user']
+    filterset_fields = ["user"]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -20,4 +20,4 @@ class PostVoteList(generics.ListCreateAPIView):
 class PostVoteDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostVoteSerializer
     permission_classes = [IsUserOrReadOnly]
-    queryset = PostVote.objects.order_by('-created_at')
+    queryset = PostVote.objects.order_by("-created_at")

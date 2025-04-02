@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('songs', '0003_song_audio_url_alter_song_audio_file'),
+        ("songs", "0003_song_audio_url_alter_song_audio_file"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='song',
-            name='duration',
+            model_name="song",
+            name="duration",
         ),
     ]

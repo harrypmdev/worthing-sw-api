@@ -7,11 +7,11 @@ class Profile(models.Model):
     bio = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
-        upload_to='images/', default='../guitar-logo-white_utocxc'
+        upload_to="images/", default="../guitar-logo-white_utocxc"
     )
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.user.username}'s Profile"

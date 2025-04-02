@@ -12,10 +12,10 @@ class Comment(models.Model):
     content = models.TextField()
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
         if len(self.content) > 10:
-            return f'{self.id}: {self.content}'
+            return f"{self.id}: {self.content}"
         else:
-            return f'{self.id}: {self.content[:10]}'
+            return f"{self.id}: {self.content[:10]}"

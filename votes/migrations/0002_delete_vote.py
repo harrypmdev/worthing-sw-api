@@ -4,13 +4,12 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('votes', '0001_initial'),
+        ("votes", "0001_initial"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='Vote',
+            name="Vote",
         ),
     ]

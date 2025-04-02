@@ -8,4 +8,4 @@ class SongVote(Vote):
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('user', 'song')
+        unique_together = ("user", "song")

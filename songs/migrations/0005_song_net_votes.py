@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('songs', '0004_remove_song_duration'),
+        ("songs", "0004_remove_song_duration"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='song',
-            name='net_votes',
+            model_name="song",
+            name="net_votes",
             field=models.IntegerField(default=0),
         ),
     ]

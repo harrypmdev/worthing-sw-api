@@ -5,25 +5,26 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('posts', '0002_remove_post_songs_post_net_votes_post_song'),
-        ('comments', '0002_comment_content'),
+        ("posts", "0002_remove_post_songs_post_net_votes_post_song"),
+        ("comments", "0002_comment_content"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='comment',
-            name='content_type',
+            model_name="comment",
+            name="content_type",
         ),
         migrations.RemoveField(
-            model_name='comment',
-            name='object_id',
+            model_name="comment",
+            name="object_id",
         ),
         migrations.AddField(
-            model_name='comment',
-            name='post',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='posts.post'),
+            model_name="comment",
+            name="post",
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to="posts.post"
+            ),
             preserve_default=False,
         ),
     ]

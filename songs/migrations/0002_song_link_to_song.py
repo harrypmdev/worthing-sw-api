@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('songs', '0001_initial'),
+        ("songs", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='song',
-            name='link_to_song',
+            model_name="song",
+            name="link_to_song",
             field=models.URLField(blank=True),
         ),
     ]
