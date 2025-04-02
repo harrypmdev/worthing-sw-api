@@ -1,6 +1,6 @@
 """Django models file that defines an abstract class, BaseContent,
 from which Post and Song models inherit.
-."""
+"""
 
 from django.db import models
 from django.contrib.auth.models import User
