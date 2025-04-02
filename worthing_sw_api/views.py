@@ -11,11 +11,13 @@ from .settings import (
 
 @api_view()
 def root_route(request):
+    """Root Route message to confirm valid access to the API."""
     return Response({"message": "Welcome to the API for Worthing Sound Wave."})
 
 
 @api_view(["POST"])
 def logout_route(request):
+    """Fix for dj-rest-auth bug failing to allow log out functionality."""
     response = Response()
     response.set_cookie(
         key=JWT_AUTH_COOKIE,
