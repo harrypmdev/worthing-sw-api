@@ -8,6 +8,8 @@ from base_content.models import BaseContent
 
 class Song(BaseContent):
     """Defines a single Song with a short audio file linked by a URL.
+    Inherits from BaseContent, a class that defines fields shared between Song
+    and Post.
 
     Fields:
     audio_file: models.FileField -- a field to temporarily save the audio file

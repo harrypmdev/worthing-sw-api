@@ -1,4 +1,4 @@
-"""Django apps file that defines the configuration class for the app."""
+"""Django apps file that defines the configuration class for the Song app."""
 
 from django.apps import AppConfig
 

@@ -23,9 +23,8 @@ class SongList(generics.ListCreateAPIView):
     queryset -- defines the relevant queryset for the list view as all Songs ordered by date
                 of creation.
     filter_backends -- defines the filter types for this view.
-    search_fields -- defines the fields for which search filtering can be done.
-    filterset_fields -- defines the fields for which set filtering can be done.
-    ordering_fields -- defines the fields for which ordering filtering can be done.
+    filterset_fields -- enables filtering by user id, user's profile id, following and net votes.
+    ordering_fields -- enables ordering by net votes.
 
     Methods:
     perform_create -- defines a custom create method which disallows the creation of more than
@@ -38,14 +37,13 @@ class SongList(generics.ListCreateAPIView):
     queryset = Song.objects.order_by("-created_at")
     filter_backends = [
         filters.OrderingFilter,
-        filters.SearchFilter,
         DjangoFilterBackend,
     ]
-    search_fields = ["user__username", "title"]
     filterset_fields = ["user", "user__profile", "user__followed__user", "net_votes"]
     ordering_fields = ["net_votes"]
 
     def perform_create(self, serializer):
+        """Custom create method to ensure users cannot have more than 3 songs."""
         user = self.request.user
         song_count = Song.objects.filter(user=user).count()
         if song_count >= 3:
@@ -53,6 +51,7 @@ class SongList(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
+        """Custom queryset method which limits the retrieved songs if a limit is provided."""
         queryset = super().get_queryset()
         limit = self.request.query_params.get("limit")
         if limit is not None:
