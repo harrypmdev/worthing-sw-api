@@ -21,6 +21,7 @@ class ProfileList(generics.ListAPIView):
                 of creation. Annotates aggregated values of posts_count, songs_count,
                 followers_count and following_count.
     """
+
     serializer_class = ProfileSerializer
     queryset = Profile.objects.annotate(
         posts_count=Count("user__post", distinct=True),
@@ -41,6 +42,7 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset -- defines the relevant queryset for as all Profiles, annotated with aggregated values
                 of posts_count, songs_count, followers_count and following_count.
     """
+
     serializer_class = ProfileSerializer
     permission_classes = [IsUserOrReadOnly]
     queryset = Profile.objects.annotate(

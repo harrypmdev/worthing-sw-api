@@ -21,7 +21,7 @@ class PostList(generics.ListCreateAPIView):
                           requests for all users and write requests for authenticated users.
     queryset -- defines the relevant queryset for the list view as all Posts ordered by date
                 of creation.
-    filter_backends -- defines the filter types for this view.
+    filter_backends -- enables field filtering, ordering and search filtering.
     search_fields -- enables searching by associated user's username and post title.
     filterset_fields -- enables filtering by user id, user's profile id, following, following by
                         by profile id and net votes.
@@ -31,6 +31,7 @@ class PostList(generics.ListCreateAPIView):
     perform_create -- defines a custom create method so any created post is associated with the
                       current User.
     """
+
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Post.objects.order_by("-created_at")
@@ -64,6 +65,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
                           requests for all users and write requests for the Post's owner only.
     queryset -- defines the relevant queryset as all Posts.
     """
+
     serializer_class = PostSerializer
     permission_classes = [IsUserOrReadOnly]
     queryset = Post.objects

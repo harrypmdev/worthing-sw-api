@@ -21,13 +21,14 @@ class PostVoteList(generics.ListCreateAPIView):
                             requests for all users and write requests for authenticated users.
     queryset -- defines the relevant queryset for the list view as all PostVotes ordered by date
                 of creation.
-    filter_backends -- defines the filter types for this view.
+    filter_backends -- enables field filtering.
     filterset_fields -- enables filtering by user.
 
     Methods:
     perform_create -- defines a custom create method so any created PostVote is associated with the
                       current User.
     """
+
     serializer_class = PostVoteSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = PostVote.objects.order_by("-created_at")
@@ -49,6 +50,7 @@ class PostVoteDetail(generics.RetrieveUpdateDestroyAPIView):
                           requests for all users and write requests for the PostVote's owner only.
     queryset -- defines the relevant queryset as all PostVotes.
     """
+
     serializer_class = PostVoteSerializer
     permission_classes = [IsUserOrReadOnly]
     queryset = PostVote.objects

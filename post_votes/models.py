@@ -19,8 +19,10 @@ class PostVote(Vote):
     A django model Meta class sets the User (inherited from Vote) and Post foreign
     keys as unique together to prevent conflicts.
     """
+
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
 
     class Meta:
         """Sets User and Post to unique together."""
+
         unique_together = ("user", "post")

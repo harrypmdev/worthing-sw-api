@@ -22,6 +22,7 @@ class Follower(models.Model):
     A django model Meta class sets the default ordering as most recently created first, and
     sets the user and followed fields as unique together.
     """
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -38,6 +39,7 @@ class Follower(models.Model):
         """Set the default ordering as most recently created first, and set
         user and followed fields as unique together.
         """
+
         ordering = ["-created_at"]
         unique_together = ["user", "followed"]
 

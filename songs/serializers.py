@@ -32,6 +32,7 @@ class SongSerializer(serializers.ModelSerializer):
 
     A django serializer Meta class defines the fields and the related model.
     """
+
     user = serializers.ReadOnlyField(source="user.username")
     is_user = serializers.SerializerMethodField()
     user_upvoted = serializers.SerializerMethodField()
@@ -89,6 +90,7 @@ class SongSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
+
         model = Song
         fields = [
             "id",

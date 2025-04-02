@@ -21,6 +21,7 @@ class Profile(models.Model):
 
     A django model Meta class sets the default ordering as most recently created first.
     """
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -30,6 +31,7 @@ class Profile(models.Model):
 
     class Meta:
         """Set the default ordering as most recently created first."""
+
         ordering = ["-created_at"]
 
     def __str__(self):

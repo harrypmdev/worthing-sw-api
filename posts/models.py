@@ -15,5 +15,6 @@ class Post(BaseContent):
     content: models.TextField -- the text content of the post.
     song: models.ForeignKey -- the foreign key optionally linking a Song to this post.
     """
+
     content = models.TextField()
     song = models.ForeignKey(Song, on_delete=models.SET_NULL, blank=True, null=True)

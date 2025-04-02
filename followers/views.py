@@ -24,6 +24,7 @@ class FollowerList(generics.ListCreateAPIView):
     perform_create -- defines a custom create method so any created Follower is associated with the
                       current User.
     """
+
     serializer_class = FollowerSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Follower.objects.all()
@@ -42,6 +43,7 @@ class FollowerDetail(generics.RetrieveDestroyAPIView):
     serializer_class -- attaches the relevant serializer.
     queryset -- defines the relevant queryset as all Followers.
     """
+
     permission_classes = [IsUserOrReadOnly]
     serializer_class = FollowerSerializer
     queryset = Follower.objects.all()

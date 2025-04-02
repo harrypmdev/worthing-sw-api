@@ -19,8 +19,10 @@ class SongVote(Vote):
     A django model Meta class sets the User (inherited from Vote) and Song foreign
     keys as unique together to prevent conflicts.
     """
+
     song = models.ForeignKey(Song, on_delete=models.CASCADE)
 
     class Meta:
         """Sets User and Song to unique together."""
+
         unique_together = ("user", "song")

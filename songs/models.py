@@ -30,6 +30,7 @@ class Song(BaseContent):
     save -- custom save method to overwrite the standard django Model save functionality.
             Uploads the audio file to cloudinary and saves the secure URL to the audio_url field.
     """
+
     audio_file = models.FileField(upload_to="temp_audio/", blank=True, null=True)
     audio_url = models.URLField(blank=True, max_length=500)
     artist_name = models.CharField(max_length=255)

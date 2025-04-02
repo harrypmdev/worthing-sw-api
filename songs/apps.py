@@ -14,6 +14,7 @@ class SongsConfig(AppConfig):
     ready -- called when the application is fully loaded. Imports signals.py to
              ensure the signal receivers are recognised.
     """
+
     default_auto_field = "django.db.models.BigAutoField"
     name = "songs"
 

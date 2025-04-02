@@ -24,6 +24,7 @@ class BaseContent(models.Model):
 
     A django model Meta class defines the class as abstract and default ordering.
     """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -32,6 +33,7 @@ class BaseContent(models.Model):
 
     class Meta:
         """Defines the class as abstract and set default ordering to created at."""
+
         abstract = True
         ordering = ["-created_at"]
 

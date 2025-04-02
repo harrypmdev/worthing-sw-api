@@ -23,6 +23,7 @@ class Comment(models.Model):
 
     A django model Meta class sets the default ordering as most recently created first.
     """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,6 +32,7 @@ class Comment(models.Model):
 
     class Meta:
         """Set the default ordering as most recently created first."""
+
         ordering = ["-created_at"]
 
     def __str__(self):

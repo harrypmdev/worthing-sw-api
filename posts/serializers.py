@@ -41,6 +41,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     A django serializer Meta class defines the fields and the related model.
     """
+
     user = serializers.ReadOnlyField(source="user.username")
     user_id = serializers.ReadOnlyField(source="user.pk")
     profile_id = serializers.ReadOnlyField(source="user.profile.id")
@@ -100,6 +101,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
+
         model = Post
         fields = [
             "id",

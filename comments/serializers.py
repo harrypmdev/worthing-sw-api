@@ -31,6 +31,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     A django serializer Meta class defines the fields and the related model.
     """
+
     user = serializers.ReadOnlyField(source="user.username")
     profile_id = serializers.ReadOnlyField(source="user.profile.id")
     profile_image = serializers.ReadOnlyField(source="user.profile.image.url")
@@ -59,6 +60,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
+
         model = Comment
         fields = [
             "id",
@@ -80,4 +82,5 @@ class CommentDetailSerializer(CommentSerializer):
     post: serializers.ReadOnlyField - Defines the post field as the id of the existing post,
                                       so PUT requests do not need to provide it.
     """
+
     post = serializers.ReadOnlyField(source="post.id")

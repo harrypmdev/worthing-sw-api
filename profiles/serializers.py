@@ -30,6 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     get_is_user -- a serializer get method for the is_user field.
     get_following_id -- a serializer get method for the is_following_id field.
     """
+
     user = serializers.ReadOnlyField(source="user.username")
     user_id = serializers.ReadOnlyField(source="user.pk")
     is_user = serializers.SerializerMethodField()
@@ -59,6 +60,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
+
         model = Profile
         fields = [
             "id",

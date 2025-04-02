@@ -19,12 +19,14 @@ class FollowerSerializer(serializers.ModelSerializer):
 
     A django serializer Meta class defines the fields and the related model.
     """
+
     user = serializers.ReadOnlyField(source="user.username")
     user_id = serializers.ReadOnlyField(source="user.pk")
     followed_name = serializers.ReadOnlyField(source="followed.username")
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
+
         model = Follower
         fields = ["id", "user", "followed", "followed_name", "created_at", "user_id"]
 
