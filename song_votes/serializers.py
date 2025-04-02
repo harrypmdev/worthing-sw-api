@@ -14,7 +14,6 @@ class SongVoteSerializer(serializers.ModelSerializer):
     is_user: serializers.SerializerMethodField -- whether or not the SongVote belongs to
                                                     the currently authenticated User.
 
-
     Methods:
     get_is_user -- a serializer get method for the is_user field.
 
