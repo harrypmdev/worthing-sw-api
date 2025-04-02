@@ -62,7 +62,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class -- attaches the relevant serializer.
     permission_classes -- defines the permissions for access to the view. Allows read-only
                           requests for all users and write requests for the Post's owner only.
-    queryset -- defines the relevant queryset for the list view as all Posts.
+    queryset -- defines the relevant queryset as all Posts.
     """
     serializer_class = PostSerializer
     permission_classes = [IsUserOrReadOnly]

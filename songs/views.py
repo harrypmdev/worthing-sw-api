@@ -67,7 +67,7 @@ class SongDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class -- attaches the relevant serializer.
     permission_classes -- defines the permissions for access to the view. Allows read-only
                           requests for all users and write requests for the Song's owner only.
-    queryset -- defines the relevant queryset for the list view as all Songs.
+    queryset -- defines the relevant queryset as all Songs.
     """
     serializer_class = SongSerializer
     permission_classes = [IsUserOrReadOnly]

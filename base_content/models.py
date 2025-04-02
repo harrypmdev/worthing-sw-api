@@ -11,7 +11,7 @@ class BaseContent(models.Model):
     fields shared by both the Song and Post model.
 
     Fields:
-    user: models.ForeignKey -- the foreign key that links of BaseContent children
+    user: models.ForeignKey -- the foreign key that links BaseContent children
                                to a single User instance.
     title: models.CharField -- the title of the BaseContent item.
     created_at: models.DateTimeField -- the date and time of creation.
