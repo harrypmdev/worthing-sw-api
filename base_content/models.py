@@ -31,8 +31,10 @@ class BaseContent(models.Model):
     net_votes = models.IntegerField(default=0)
 
     class Meta:
+        """Defines the class as abstract and set default ordering to created at."""
         abstract = True
         ordering = ["-created_at"]
 
     def __str__(self):
+        """Return a string to summarise the class by its id and title."""
         return f"{self.id}: {self.title}"

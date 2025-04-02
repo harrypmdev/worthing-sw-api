@@ -29,7 +29,9 @@ class Profile(models.Model):
     )
 
     class Meta:
+        """Set the default ordering as most recently created first."""
         ordering = ["-created_at"]
 
     def __str__(self):
+        """Return a string to represent the Profile model."""
         return f"{self.user.username}'s Profile"

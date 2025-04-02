@@ -8,7 +8,7 @@ from followers.models import Follower
 
 
 class PostSerializer(serializers.ModelSerializer):
-    """Defines the serializer for the Post model.
+    """Define the serializer for the Post model.
 
     Fields:
     user: serializers.ReadOnlyField -- redefines the user field as the

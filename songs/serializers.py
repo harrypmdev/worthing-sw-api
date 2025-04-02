@@ -7,7 +7,7 @@ from song_votes.models import SongVote
 
 
 class SongSerializer(serializers.ModelSerializer):
-    """Defines the serializer for the Song model.
+    """Define the serializer for the Song model.
 
     Fields:
     user: serializers.ReadOnlyField -- redefines the user field as the

@@ -7,7 +7,7 @@ from followers.models import Follower
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    """Defines the serializer for the Profile model.
+    """Define the serializer for the Profile model.
 
     Fields:
     user: serializers.ReadOnlyField -- redefines the user field as the
