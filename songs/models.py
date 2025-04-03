@@ -31,9 +31,10 @@ class Song(BaseContent):
             Uploads the audio file to cloudinary and saves the secure URL to the audio_url field.
     """
 
+    title = models.CharField(max_length=20)  # Override to shorten max length
     audio_file = models.FileField(upload_to="temp_audio/", blank=True, null=True)
     audio_url = models.URLField(blank=True, max_length=500)
-    artist_name = models.CharField(max_length=255)
+    artist_name = models.CharField(max_length=20)
     link_to_song = models.URLField(blank=True, max_length=200)
 
     def __str__(self):

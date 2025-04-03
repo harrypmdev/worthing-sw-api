@@ -1,6 +1,7 @@
 """Django serializers file that defines the serializer for the Song model."""
 
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .models import Song
 from song_votes.models import SongVote
@@ -29,6 +30,8 @@ class SongSerializer(serializers.ModelSerializer):
     get_user_vote_id -- a serializer get method for the user_vote_id field.
     validate_audio_file -- a custom validation method to reject Song creation requests
                            with no file or a file over 10MB, the Cloudinary upload limit.
+    validate_artist_name -- prevent the creation of songs with more than 20 characters.
+    validate_title -- prevent the creation of songs with more than 20 characters in their title.
 
     A django serializer Meta class defines the fields and the related model.
     """
@@ -86,6 +89,18 @@ class SongSerializer(serializers.ModelSerializer):
                 "The file size exceeds the 10MB limit and could not be shortened."
             )
             raise serializers.ValidationError(fileError)
+        return value
+
+    def validate_artist_name(self, value):
+        """Prevent the creation of songs with more than 20 characters."""
+        if len(value) > 20:
+            raise ValidationError('Artist name exceeds the maximum length of 20 characters.')
+        return value
+
+    def validate_title(self, value):
+        """Prevent the creation of songs with more than 20 characters in their title."""
+        if len(value) > 20:
+            raise ValidationError('Title exceeds the maximum length of 20 characters.')
         return value
 
     class Meta:

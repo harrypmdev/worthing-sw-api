@@ -1,6 +1,7 @@
 """Django serializers file that defines the serializer for the Profile model."""
 
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .models import Profile
 from followers.models import Follower
@@ -29,6 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     Methods:
     get_is_user -- a serializer get method for the is_user field.
     get_following_id -- a serializer get method for the is_following_id field.
+    validate_bio -- prevent the creation of bios with more than 70 characters.
     """
 
     user = serializers.ReadOnlyField(source="user.username")
@@ -57,6 +59,12 @@ class ProfileSerializer(serializers.ModelSerializer):
             following = Follower.objects.filter(user=user, followed=obj.user).first()
             return following.id if following else None
         return None
+
+    def validate_bio(self, value):
+        """Prevent the creation of bios with more than 70 characters."""
+        if len(value) > 70:
+            raise ValidationError('Bio exceeds the maximum length of 70 characters.')
+        return value
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
