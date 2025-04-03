@@ -117,6 +117,10 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Ensure the session cookie settings are configured
+SESSION_COOKIE_SAMESITE = "None"  # Required for cross-origin requests
+SESSION_COOKIE_SECURE = True      # Only allow cookies over HTTPS
+
 CORS_ALLOWED_ORIGINS = [
     origin
     for origin in [os.environ.get("CLIENT_ORIGIN"), os.environ.get("CLIENT_ORIGIN_DEV")]
