@@ -2,6 +2,8 @@
 
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
+
 
 from .models import Comment
 
@@ -28,6 +30,7 @@ class CommentSerializer(serializers.ModelSerializer):
     get_is_user -- a serializer get method for the is_user field.
     get_created_at -- a serializer get method for the created_at field.
     get_updated_at -- a serializer get method for the updated_at field.
+    validate_content -- prevent the creation of comments with more than 300 characters.
 
     A django serializer Meta class defines the fields and the related model.
     """
@@ -57,6 +60,11 @@ class CommentSerializer(serializers.ModelSerializer):
         Returns the date and time in natural time for easy reading.
         """
         return naturaltime(obj.updated_at)
+
+    def validate_content(self, value):
+        if len(value) > 300:
+            raise ValidationError('Content exceeds the maximum length of 300 characters.')
+        return value
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
