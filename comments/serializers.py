@@ -62,6 +62,7 @@ class CommentSerializer(serializers.ModelSerializer):
         return naturaltime(obj.updated_at)
 
     def validate_content(self, value):
+        """Prevent the creation of comments with more than 300 characters."""
         if len(value) > 300:
             raise ValidationError('Content exceeds the maximum length of 300 characters.')
         return value

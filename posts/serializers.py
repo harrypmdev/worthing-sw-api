@@ -1,6 +1,7 @@
 """Django serializers file that defines the serializer for the Post model."""
 
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .models import Post
 from post_votes.models import PostVote
@@ -38,6 +39,8 @@ class PostSerializer(serializers.ModelSerializer):
     get_user_downvoted -- a serializer get method for the user_downvoted field.
     get_user_vote_id -- a serializer get method for the user_vote_id field.
     get_following_id -- a serializer get method for the following_id field.
+    validate_content -- prevent the creation of posts with more than 400 characters.
+    validate_title -- prevent the creation of posts with more than 50 characters in the title.
 
     A django serializer Meta class defines the fields and the related model.
     """
@@ -98,6 +101,18 @@ class PostSerializer(serializers.ModelSerializer):
             following = Follower.objects.filter(user=user, followed=obj.user).first()
             return following.id if following else None
         return None
+
+    def validate_content(self, value):
+        """Prevent the creation of posts with more than 400 characters."""
+        if len(value) > 400:
+            raise ValidationError('Content exceeds the maximum length of 400 characters.')
+        return value
+
+    def validate_title(self, value):
+        """Prevent the creation of posts with more than 50 characters in their title."""
+        if len(value) > 50:
+            raise ValidationError('Title exceeds the maximum length of 50 characters.')
+        return value
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
