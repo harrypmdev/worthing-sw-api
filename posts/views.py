@@ -48,7 +48,7 @@ class PostList(generics.ListCreateAPIView):
         "user__followed__user__profile",
         "net_votes",
     ]
-    ordering_fields = ["net_votes"]
+    ordering_fields = ["net_votes", "created_at"]
 
     def perform_create(self, serializer):
         """Custom create method to attach the current User to the new song instance."""
