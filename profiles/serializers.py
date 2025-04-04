@@ -63,7 +63,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     def validate_bio(self, value):
         """Prevent the creation of bios with more than 70 characters."""
         if len(value) > 70:
-            raise ValidationError('Bio exceeds the maximum length of 70 characters.')
+            raise ValidationError("Bio exceeds the maximum length of 70 characters.")
         return value
 
     class Meta:

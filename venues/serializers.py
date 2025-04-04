@@ -31,7 +31,7 @@ class VenueSerializer(serializers.ModelSerializer):
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
         model = Venue
-        fields = ['id', 'name', 'user_count']
+        fields = ["id", "name", "user_count"]
 
 
 class UserVenueSerializer(serializers.ModelSerializer):
@@ -63,5 +63,5 @@ class UserVenueSerializer(serializers.ModelSerializer):
         """Django serializer Meta class to define the fields and the related model."""
         model = UserVenue
         fields = [
-            'id', 'user', 'venue', 'user_name', 'name',
-            'user_count', 'created_at']
+            "id", "user", "venue", "user_name", "name",
+            "user_count", "created_at"]
