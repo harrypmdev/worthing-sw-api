@@ -69,7 +69,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         """Django serializer Meta class to define the fields and the related model."""
-
         model = Comment
         fields = [
             "id",

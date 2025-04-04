@@ -32,7 +32,6 @@ class SongList(generics.ListCreateAPIView):
     get_queryset -- defines a custom method for retrieving the queryset which limits the queryset
                     to a cap if a limit is given.
     """
-
     serializer_class = SongSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Song.objects.order_by("-created_at")
@@ -70,7 +69,6 @@ class SongDetail(generics.RetrieveUpdateDestroyAPIView):
                           requests for all users and write requests for the Song's owner only.
     queryset -- defines the relevant queryset as all Songs.
     """
-
     serializer_class = SongSerializer
     permission_classes = [IsUserOrReadOnly]
     queryset = Song.objects

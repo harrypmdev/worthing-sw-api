@@ -1,8 +1,12 @@
 """Django models file that defines the ORM models for the Venue and
 UserVenue entities.
 
-Both are included in the venues app as UserVenue is a junction table
-for the many-to-many relationship between User and Venue.
+The Venue model represents a music venue.
+The UserVenue model is a junction table representing a many-to-many relationship
+between User and Venue, tracking when a user associates with a venue.
+
+Both models are included in the venues app.
+
 """
 
 from django.db import models
