@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 
 class Follower(models.Model):
-    """Defines a single Comment, a model with a many-to-one relationship
-    with both User and Post.
+    """Defines a single Follower, a model with a relation with to two different
+    User instances.
 
     Fields:
     user: models.ForeignKey -- the foreign key that links Follower to the User
