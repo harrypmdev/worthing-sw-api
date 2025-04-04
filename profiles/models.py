@@ -23,7 +23,7 @@ class Profile(models.Model):
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, max_length=70)
+    bio = models.TextField(blank=True, max_length=220)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(
         upload_to="images/", default="../guitar-logo-white_utocxc"

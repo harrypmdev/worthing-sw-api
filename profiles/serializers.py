@@ -30,7 +30,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     Methods:
     get_is_user -- a serializer get method for the is_user field.
     get_following_id -- a serializer get method for the is_following_id field.
-    validate_bio -- prevent the creation of bios with more than 70 characters.
+    validate_bio -- prevent the creation of bios with more than 220 characters.
     """
 
     user = serializers.ReadOnlyField(source="user.username")
@@ -61,9 +61,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         return None
 
     def validate_bio(self, value):
-        """Prevent the creation of bios with more than 70 characters."""
-        if len(value) > 70:
-            raise ValidationError("Bio exceeds the maximum length of 70 characters.")
+        """Prevent the creation of bios with more than 220 characters."""
+        if len(value) > 220:
+            raise ValidationError("Bio exceeds the maximum length of 220 characters.")
         return value
 
     class Meta:
