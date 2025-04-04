@@ -14,9 +14,7 @@ class VenueSerializer(serializers.ModelSerializer):
 
 
 class UserVenueSerializer(serializers.ModelSerializer):
-    user_id = serializers.ReadOnlyField(source="user.id")
-    user = serializers.ReadOnlyField(source="user.username")
-    venue_id = serializers.ReadOnlyField(source="user.id")
+    user_name = serializers.ReadOnlyField(source="user.username")
     name = serializers.ReadOnlyField(source="venue.name")
     user_count = serializers.SerializerMethodField()
 
@@ -26,5 +24,5 @@ class UserVenueSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserVenue
         fields = [
-            'id', 'user', 'user_id',
-            'venue_id', 'name', 'user_count', 'created_at']
+            'id', 'user', 'venue', 'user_name', 'name',
+            'user_count', 'created_at']
