@@ -1,4 +1,4 @@
-"""Views file that defines two API views for the Post app.
+"""Views file that defines two API views for the posts app.
 PostList -- A list view for the 'posts/' endpoint.
 PostDetail -- A detail view for the 'posts/<int:pk>/' endpoint.
 """
@@ -25,7 +25,7 @@ class PostList(generics.ListCreateAPIView):
     search_fields -- enables searching by associated user's username and post title.
     filterset_fields -- enables filtering by user id, user's profile id, following, following by
                         by profile id and net votes.
-    ordering_fields -- enables ordering by net votes.
+    ordering_fields -- enables ordering by net votes and created_at.
 
     Methods:
     perform_create -- defines a custom create method so any created post is associated with the

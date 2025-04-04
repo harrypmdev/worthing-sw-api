@@ -1,4 +1,4 @@
-"""Views file that defines two API views for the Comment app.
+"""Views file that defines two API views for the comments app.
 CommentList -- A list view for the 'comments/' endpoint.
 CommentDetail -- A detail view for the 'comments/<int:pk>/' endpoint.
 """

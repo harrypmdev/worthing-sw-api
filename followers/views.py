@@ -1,4 +1,4 @@
-"""Views file that defines two API views for the Comment app.
+"""Views file that defines two API views for the followers app.
 FollowerList -- A list view for the 'followers/' endpoint.
 FollowerDetail -- A detail view for the 'followers/<int:pk>/' endpoint.
 """

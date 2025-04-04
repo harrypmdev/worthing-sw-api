@@ -1,4 +1,4 @@
-"""Views file that defines two API views for the Profile app.
+"""Views file that defines two API views for the profiles app.
 ProfileList -- A list view for the 'profiles/' endpoint.
 ProfileDetail -- A detail view for the 'profiles/<int:pk>/' endpoint.
 """

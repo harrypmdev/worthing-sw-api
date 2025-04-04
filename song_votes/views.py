@@ -1,4 +1,4 @@
-"""Views file that defines two API views for the SongVote app.
+"""Views file that defines two API views for the song_votes app.
 SongVoteList -- A list view for the 'song_votes/' endpoint.
 SongVoteDetail -- A detail view for the 'song_votes/<int:pk>/' endpoint.
 """

@@ -1,4 +1,4 @@
-"""Views file that defines two API views for the Song app.
+"""Views file that defines two API views for the songs app.
 SongList -- A list view for the 'songs/' endpoint.
 SongDetail -- A detail view for the 'songs/<int:pk>/' endpoint.
 """
@@ -22,7 +22,7 @@ class SongList(generics.ListCreateAPIView):
                           requests for all users and write requests for authenticated users.
     queryset -- defines the relevant queryset for the list view as all Songs ordered by date
                 of creation.
-    filter_backends -- enables filed filtering and ordering.
+    filter_backends -- enables field filtering and ordering.
     filterset_fields -- enables filtering by user id, user's profile id, following and net votes.
     ordering_fields -- enables ordering by net votes.
 
